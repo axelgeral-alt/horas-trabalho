@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horas de Trabalho</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Biblioteca Excel -->
+    <script src="libs/xlsx.full.min.js"></script>
+</head>
+<body>
+
+<h1>Horas de Trabalho</h1>
+
+<!-- CONTROLOS PRINCIPAIS -->
+<div class="controls">
+    <button onclick="iniciarRegisto()">Iniciar</button>
+    <button onclick="pararRegisto()">Parar</button>
+
+    <input type="text" id="comentario" placeholder="Comentário">
+
+    <button onclick="abrirPopupManual()">Adicionar Registo Manual</button>
+    <button onclick="abrirPopupExportar()">Exportar Excel</button>
+
+    <input type="date" id="filtro-data" onchange="filtrarPorData()">
+
+    <button onclick="toggleDarkMode()">Modo Escuro</button>
+    <button id="toggleAutoBackupBtn" onclick="toggleAutoBackup()">Backup Automático: OFF</button>
+</div>
+
+<!-- STATUS DE CONTAGEM -->
+<div id="status-contagem"></div>
+
+<!-- LAYOUT PRINCIPAL -->
+<div class="layout-principal">
+
+    <!-- TABELA + PAGINAÇÃO -->
+    <div class="tabela-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Início</th>
+                    <th>Fim</th>
+                    <th>Tempo Real</th>
+                    <th>Tempo Arredondado</th>
+                    <th>Valor (€)</th>
+                    <th>Comentário</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="tabela-registos"></tbody>
+        </table>
+
+        <div id="paginacao"></div>
+    </div>
+
+    <!-- LATERAL: TOTAIS + OPÇÕES -->
+    <aside class="totais-lateral">
+
+        <!-- TOTAIS -->
+        <div class="total-bloco">
+            <div id="total-dia">Total do dia: 0h 0m</div>
+        </div>
+
+        <div class="total-bloco">
+            <div id="total-semana">Total da semana: 0h 0m</div>
+        </div>
+
+        <div class="total-bloco">
+            <div id="total-mes">Total do mês: 0h 0m</div>
+        </div>
+
+        <hr>
+
+        <!-- OPÇÕES -->
+        <div class="opcoes-lateral">
+            <h3>Valor hora</h3>
+
+            <label for="valor-hora">Valor (€)</label>
+            <input type="text" id="valor-hora" placeholder="Ex: 8,50">
+
+            <label for="data-valor-hora">Desde</label>
+            <input type="date" id="data-valor-hora">
+
+            <button onclick="guardarValorHora()">Guardar</button>
+
+            <hr>
+
+            <h3>Backups</h3>
+
+            <button onclick="exportarBackup()">Exportar</button>
+            <button onclick="importarBackup()">Importar</button>
+        </div>
+
+    </aside>
+
+</div>
+
+<!-- POPUP: REGISTO MANUAL -->
+<div id="popup-manual" class="popup">
+    <div class="popup-content">
+        <h3>Registo Manual</h3>
+
+        <label for="manual-data">Data</label>
+        <input type="date" id="manual-data">
+
+        <label for="manual-inicio">Início</label>
+        <input type="time" id="manual-inicio">
+
+        <label for="manual-fim">Fim</label>
+        <input type="time" id="manual-fim">
+
+        <label for="manual-comentario">Comentário</label>
+        <input type="text" id="manual-comentario">
+
+        <div class="buttons">
+            <button onclick="fecharPopupManual()">Cancelar</button>
+            <button onclick="guardarRegistoManual()">Guardar</button>
+        </div>
+    </div>
+</div>
+
+<!-- POPUP: EXPORTAR EXCEL -->
+<div id="popup-exportar" class="popup">
+    <div class="popup-content">
+        <h3>Exportar Excel</h3>
+
+        <label for="exportar-de">De</label>
+        <input type="date" id="exportar-de">
+
+        <label for="exportar-ate">Até</label>
+        <input type="date" id="exportar-ate">
+
+        <div class="buttons">
+            <button onclick="exportarPeriodo('hoje')">Hoje</button>
+            <button onclick="exportarPeriodo('semana')">Semana</button>
+            <button onclick="exportarPeriodo('mes')">Mês</button>
+            <button onclick="exportarPeriodo('ano')">Ano</button>
+        </div>
+
+        <div class="buttons">
+            <button onclick="fecharPopupExportar()">Cancelar</button>
+            <button onclick="exportarExcelComFiltro()">Exportar</button>
+        </div>
+    </div>
+</div>
+
+<!-- SCRIPT PRINCIPAL -->
+<script src="app.js"></script>
+
+</body>
+</html>

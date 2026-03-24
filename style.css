@@ -1,0 +1,338 @@
+/* =========================================================
+   RESET GLOBAL
+   ========================================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* =========================================================
+   BASE
+   ========================================================= */
+body {
+    background-color: #f5f5f5;
+    color: #222;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+body.dark {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* =========================================================
+   CONTROLOS PRINCIPAIS
+   ========================================================= */
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+.controls input {
+    padding: 6px 8px;
+    border-radius: 4px;
+    border: 1px solid #bbb;
+}
+
+/* =========================================================
+   BOTÕES
+   ========================================================= */
+button {
+    padding: 8px 14px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    background-color: #1976d2;
+    color: #fff;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #125aa0;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+button.danger {
+    background-color: #c62828;
+}
+
+button.danger:hover {
+    background-color: #9b1f1f;
+}
+
+.auto-backup-on {
+    background-color: #2e7d32;
+}
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+input[type="text"],
+input[type="date"],
+input[type="time"],
+input[type="number"] {
+    padding: 6px 8px;
+    border-radius: 4px;
+    border: 1px solid #bbb;
+}
+
+body.dark input {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    border-color: #444;
+}
+
+/* =========================================================
+   STATUS DE CONTAGEM
+   ========================================================= */
+#status-contagem {
+    display: none;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #e3f2fd;
+    border-left: 4px solid #1976d2;
+    border-radius: 4px;
+}
+
+body.dark #status-contagem {
+    background-color: #1e3a5f;
+    border-left-color: #64b5f6;
+}
+
+/* =========================================================
+   LAYOUT PRINCIPAL
+   ========================================================= */
+.layout-principal {
+    display: flex;
+    gap: 25px;
+    align-items: flex-start;
+}
+
+.tabela-container {
+    flex: 1;
+    min-width: 0;
+}
+
+/* =========================================================
+   TABELA (DENSIDADE AJUSTADA)
+   ========================================================= */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+
+th,
+td {
+    padding: 6px 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+th {
+    background-color: #f0f0f0;
+    font-weight: 600;
+}
+
+tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+body.dark th {
+    background-color: #1e1e1e;
+}
+
+body.dark td {
+    border-color: #333;
+}
+
+body.dark tbody tr:hover {
+    background-color: #1f1f1f;
+}
+
+/* =========================================================
+   COLUNA AÇÕES
+   ========================================================= */
+td.acoes {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    white-space: nowrap;
+}
+
+/* =========================================================
+   PAGINAÇÃO
+   ========================================================= */
+#paginacao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+/* =========================================================
+   CAIXA LATERAL — TOTAIS + OPÇÕES
+   ========================================================= */
+.totais-lateral {
+    width: 240px;
+    padding: 16px;
+    background-color: #f1f8e9;      /* verde-alface muito claro */
+    border: 1px solid #c5d6b5;      /* cinzento suave */
+    border-radius: 8px;
+}
+
+body.dark .totais-lateral {
+    background-color: #1f2a1f;
+    border-color: #3a4a3a;
+}
+
+/* Totais */
+.total-bloco {
+    margin-bottom: 12px;
+}
+
+.valor {
+    font-weight: 600;
+    color: #2e7d32;
+}
+
+body.dark .valor {
+    color: #81c784;
+}
+
+/* Separadores */
+.totais-lateral hr {
+    margin: 14px 0;
+    border: none;
+    border-top: 1px solid #c5d6b5;
+}
+
+body.dark .totais-lateral hr {
+    border-top-color: #3a4a3a;
+}
+
+/* =========================================================
+   OPÇÕES NA LATERAL
+   ========================================================= */
+.opcoes-lateral h3 {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.opcoes-lateral label {
+    display: block;
+    margin-top: 8px;
+    font-size: 13px;
+}
+
+.opcoes-lateral input {
+    width: 100%;
+    margin-top: 4px;
+}
+
+.opcoes-lateral button {
+    width: 100%;
+    margin-top: 8px;
+}
+
+/* =========================================================
+   POPUPS
+   ========================================================= */
+.popup {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.popup.open {
+    display: flex;
+}
+
+.popup-content {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 6px;
+    width: 100%;
+    max-width: 420px;
+}
+
+.popup-content h3 {
+    margin-bottom: 15px;
+}
+
+.popup-content label {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.popup-content input {
+    width: 100%;
+    margin-top: 4px;
+}
+
+.popup-content .buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+body.dark .popup-content {
+    background-color: #1e1e1e;
+}
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .layout-principal {
+        flex-direction: column;
+    }
+
+    .totais-lateral {
+        width: 100%;
+    }
+
+    th,
+    td {
+        padding: 4px 6px;
+        font-size: 12px;
+    }
+
+    .popup-content {
+        max-width: 90%;
+    }
+}
